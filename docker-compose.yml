@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  php:
+    image: lu7766lu7766/jac-php-mssql-apache:latest
+    ports:
+      - 8088:80
+    volumes:
+      - ../:/var/www/html
+    environment:
+      - VIRTUAL_HOST=127.0.0.1
+
+  jenkins:
+    image: jenkins:2.60.3
+    ports:
+      - 8080:8080
+
+  nginx:
+    image: jwilder/nginx-proxy:alpine
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  composer:
+    restart: 'no'
+    image: composer/composer
+    command: install
+    volumes:
+      - .:/app
