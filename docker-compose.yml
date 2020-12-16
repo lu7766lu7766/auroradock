@@ -10,11 +10,6 @@ services:
     environment:
       - VIRTUAL_HOST=127.0.0.1
 
-  jenkins:
-    image: jenkins:2.60.3
-    ports:
-      - 8080:8080
-
   nginx:
     image: jwilder/nginx-proxy:alpine
     volumes:

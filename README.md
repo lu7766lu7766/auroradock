@@ -1,4 +1,4 @@
 command
 ```
-docker-compose up php nginx jenkins 
+docker-compose up php nginx 
 ```
